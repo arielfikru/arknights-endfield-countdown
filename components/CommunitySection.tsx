@@ -37,7 +37,7 @@ export const CommunitySection: React.FC = () => {
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <div className="w-2 h-2 bg-[#FFE600] rounded-full animate-ping"></div>
-                                <div className="text-[#FFE600] text-xs font-mono-tech tracking-widest">SECTOR: INDONESIA</div>
+                                <div className="text-[#FFE600] text-xs font-mono-tech tracking-widest">Community</div>
                             </div>
                             <h3 className="text-2xl font-bold mb-2 group-hover:translate-x-1 transition-transform">Arknights Endfield ID</h3>
                             <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">
@@ -62,9 +62,9 @@ export const CommunitySection: React.FC = () => {
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                                <div className="text-white/70 text-xs font-mono-tech tracking-widest">GLOBAL FREQUENCY</div>
+                                <div className="text-white/70 text-xs font-mono-tech tracking-widest">Official</div>
                             </div>
-                            <h3 className="text-2xl font-bold mb-2 group-hover:translate-x-1 transition-transform">Official Community</h3>
+                            <h3 className="text-2xl font-bold mb-2 group-hover:translate-x-1 transition-transform">Official Indonesia</h3>
                             <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">
                                 The central hub for Arknights Endfield. Access official announcements, developer logs, and global operator discussions.
                             </p>

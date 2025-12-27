@@ -37,10 +37,10 @@ export default function App() {
                     The world of Arknights Endfield awaits. Join the waitlist now to secure your coordinates on Talos-II.
                  </p>
                  <div className="animate-fade-in-up delay-300">
-                     <button className="group relative inline-flex items-center justify-center px-12 py-4 bg-[#FFE600] text-black font-bold text-lg tracking-widest uppercase clip-button hover:bg-white transition-colors duration-300">
+                     <a href="https://endfield.gryphline.com/en-us" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center px-12 py-4 bg-[#FFE600] text-black font-bold text-lg tracking-widest uppercase clip-button hover:bg-white transition-colors duration-300">
                         <span className="relative z-10">Pre-Register Now</span>
                         <div className="absolute inset-0 bg-white translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out -z-0"></div>
-                     </button>
+                     </a>
                  </div>
                  
                  <div className="mt-12 text-xs text-gray-600 font-mono-tech max-w-md mx-auto animate-fade-in-up delay-500">

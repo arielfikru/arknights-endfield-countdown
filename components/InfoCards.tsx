@@ -8,8 +8,8 @@ export const InfoCards: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* Lore Card */}
-            <div className="group relative h-[400px] overflow-hidden border border-white/10 hover:border-[#FFE600] transition-colors animate-fade-in-up delay-200">
-                <img src="https://picsum.photos/800/600?grayscale" alt="Arknights Endfield Lore" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" />
+            <a href="https://game8.co/games/Arknights-Endfield/archives/523676" target="_blank" rel="noopener noreferrer" className="group relative h-[400px] overflow-hidden border border-white/10 hover:border-[#FFE600] transition-colors animate-fade-in-up delay-200 block cursor-pointer">
+                <img src="/endministrator.png" alt="Arknights Endfield Lore" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                 
                 <div className="absolute bottom-0 left-0 p-8 w-full">
@@ -28,11 +28,13 @@ export const InfoCards: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
 
             {/* Media Card */}
-            <div className="group relative h-[400px] overflow-hidden border border-white/10 hover:border-[#FFE600] transition-colors animate-fade-in-up delay-300">
-                 <div className="absolute inset-0 bg-[#1a1a1a]">
+            <a href="https://www.youtube.com/watch?v=67Vj96zza08" target="_blank" rel="noopener noreferrer" className="group relative h-[400px] overflow-hidden border border-white/10 hover:border-[#FFE600] transition-colors animate-fade-in-up delay-300 block cursor-pointer">
+                 <img src="/operator.69ebf0f6.png" alt="Combat Mechanics" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                 <div className="absolute inset-0">
                     <div className="w-full h-full flex items-center justify-center">
                         {/* Abstract Tech Graphic */}
                         <div className="w-40 h-40 border border-white/20 rounded-full flex items-center justify-center relative animate-[spin_10s_linear_infinite] group-hover:border-[#FFE600]/50 transition-colors">
@@ -64,7 +66,7 @@ export const InfoCards: React.FC = () => {
                         </div>
                     </div>
                  </div>
-            </div>
+            </a>
 
         </div>
       </div>

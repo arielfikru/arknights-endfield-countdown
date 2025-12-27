@@ -8,7 +8,7 @@ export const HeroSection: React.FC = () => {
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://image-5.uhdpaper.com/wallpaper/arknights-endfield-endministrator-perlica-hd-wallpaper-uhdpaper.com-306@5@c.jpg" 
+          src="/014c0e72b163ae2a85af0b49f98ae805.jpg" 
           alt="" 
           className="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]"
         />
@@ -37,15 +37,15 @@ export const HeroSection: React.FC = () => {
             </p>
             
             <div className="flex flex-col md:flex-row items-center gap-6 pt-8 animate-fade-in-up delay-500">
-                <button className="relative bg-[#FFE600] text-black px-8 py-4 font-bold text-lg uppercase tracking-wider clip-button hover:bg-white transition-all hover:scale-105 active:scale-95 flex items-center gap-2 group overflow-hidden">
+                <a href="https://endfield.gryphline.com/en-us" target="_blank" rel="noopener noreferrer" className="relative bg-[#FFE600] text-black px-8 py-4 font-bold text-lg uppercase tracking-wider clip-button hover:bg-white transition-all hover:scale-105 active:scale-95 flex items-center gap-2 group overflow-hidden">
                     <span className="relative z-10 flex items-center gap-2">Pre-Register <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
-                </button>
+                </a>
                 
-                <button className="flex items-center gap-3 px-6 py-4 border border-white/30 bg-black/40 backdrop-blur-sm text-white font-mono-tech hover:bg-white/10 hover:border-white transition-all clip-button group">
+                <a href="https://www.youtube.com/watch?v=5OYVWf5VgK0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-4 border border-white/30 bg-black/40 backdrop-blur-sm text-white font-mono-tech hover:bg-white/10 hover:border-white transition-all clip-button group">
                     <Play className="w-4 h-4 fill-white group-hover:scale-110 transition-transform" />
                     <span>TRAILER</span>
-                </button>
+                </a>
             </div>
         </div>
 
