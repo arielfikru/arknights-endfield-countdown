@@ -3,15 +3,18 @@ import { HeroSection } from './components/HeroSection';
 import { CommunitySection } from './components/CommunitySection';
 import { TechDecoration } from './components/TechDecoration';
 import { InfoCards } from './components/InfoCards';
+import { CustomCursor } from './components/CustomCursor';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white relative selection:bg-[#FFE600] selection:text-black overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-white relative selection:bg-[#FFE600] selection:text-black overflow-hidden cursor-none">
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none z-0 tech-grid opacity-30"></div>
       
       {/* Scanline CRT Effect */}
       <div className="scanline-bar"></div>
+      
+      <CustomCursor />
       
       <main className="relative z-10 flex flex-col gap-0">
         <HeroSection />

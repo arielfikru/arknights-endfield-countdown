@@ -15,6 +15,11 @@
         color: #ffffff;
         overflow-x: hidden;
       }
+      
+      /* Hide default cursor */
+      * {
+        cursor: none !important;
+      }
       .font-mono-tech {
         font-family: 'Share Tech Mono', monospace;
       }
@@ -141,6 +146,103 @@
       .delay-500 { animation-delay: 500ms; }
       .delay-700 { animation-delay: 700ms; }
       .delay-1000 { animation-delay: 1000ms; }
+
+      /* Custom Cursor */
+      .custom-cursor-dot {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: #FFE600;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 99999;
+        transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 0 10px rgba(255, 230, 0, 0.8), 0 0 20px rgba(255, 230, 0, 0.4);
+        will-change: transform;
+      }
+
+      .custom-cursor-ring {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(255, 230, 0, 0.5);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 99998;
+        transition: width 0.3s ease, height 0.3s ease, border-color 0.2s ease, border-width 0.2s ease;
+        will-change: transform;
+      }
+
+      .custom-cursor-crosshair {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 99997;
+        transition: width 0.2s ease, height 0.2s ease;
+        will-change: transform;
+      }
+
+      .custom-cursor-crosshair::before,
+      .custom-cursor-crosshair::after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 230, 0, 0.3);
+      }
+
+      .custom-cursor-crosshair::before {
+        width: 2px;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .custom-cursor-crosshair::after {
+        width: 100%;
+        height: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /* Hover state */
+      .custom-cursor-dot.cursor-hover {
+        width: 12px;
+        height: 12px;
+        background: #FFFFFF;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 230, 0, 0.6);
+      }
+
+      .custom-cursor-ring.cursor-hover {
+        width: 60px;
+        height: 60px;
+        border-color: rgba(255, 255, 255, 0.8);
+        border-width: 2px;
+      }
+
+      .custom-cursor-crosshair.cursor-hover {
+        width: 30px;
+        height: 30px;
+      }
+
+      .custom-cursor-crosshair.cursor-hover::before,
+      .custom-cursor-crosshair.cursor-hover::after {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Mobile: hide custom cursor */
+      @media (max-width: 768px) {
+        .custom-cursor-dot,
+        .custom-cursor-ring,
+        .custom-cursor-crosshair {
+          display: none;
+        }
+        * {
+          cursor: auto !important;
+        }
+      }
     </style>
 </head>
   <body>
