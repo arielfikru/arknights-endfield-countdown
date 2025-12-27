@@ -8,7 +8,7 @@ export const HeroSection: React.FC = () => {
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/014c0e72b163ae2a85af0b49f98ae805.jpg" 
+          src={`${import.meta.env.BASE_URL}014c0e72b163ae2a85af0b49f98ae805.jpg`}
           alt="" 
           className="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]"
         />
