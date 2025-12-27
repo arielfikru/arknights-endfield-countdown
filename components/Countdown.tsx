@@ -13,6 +13,7 @@ interface TimeLeft {
 
 export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [totalMs, setTotalMs] = useState<number>(0);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -21,6 +22,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       const difference = target - now;
 
       if (difference > 0) {
+        setTotalMs(difference);
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
@@ -28,28 +30,55 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
           seconds: Math.floor((difference / 1000) % 60),
         });
       } else {
+        setTotalMs(0);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     };
 
     calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+    const timer = setInterval(calculateTimeLeft, 100); // Update more frequently for smoother animation
 
     return () => clearInterval(timer);
   }, [targetDate]);
 
   return (
     <div className="grid grid-cols-4 gap-2 md:gap-4">
-      <TimeBlock value={timeLeft.days} label="DAYS" />
-      <TimeBlock value={timeLeft.hours} label="HRS" />
-      <TimeBlock value={timeLeft.minutes} label="MIN" />
-      <TimeBlock value={timeLeft.seconds} label="SEC" isLast />
+      <TimeBlock value={timeLeft.days} label="DAYS" totalMs={totalMs} unit="days" />
+      <TimeBlock value={timeLeft.hours} label="HRS" totalMs={totalMs} unit="hours" />
+      <TimeBlock value={timeLeft.minutes} label="MIN" totalMs={totalMs} unit="minutes" />
+      <TimeBlock value={timeLeft.seconds} label="SEC" totalMs={totalMs} unit="seconds" isLast />
     </div>
   );
 };
 
-const TimeBlock: React.FC<{ value: number; label: string; isLast?: boolean }> = ({ value, label, isLast }) => {
+const TimeBlock: React.FC<{ 
+  value: number; 
+  label: string; 
+  totalMs: number;
+  unit: 'days' | 'hours' | 'minutes' | 'seconds';
+  isLast?: boolean 
+}> = ({ value, label, totalMs, unit, isLast }) => {
   const formattedValue = value.toString().padStart(2, '0');
+  
+  // Calculate progress for each unit based on its cycle time
+  const getProgress = () => {
+    if (totalMs <= 0) return 0;
+    
+    const cycleTimes = {
+      days: 24 * 60 * 60 * 1000,      // 1 day in milliseconds
+      hours: 60 * 60 * 1000,           // 1 hour in milliseconds
+      minutes: 60 * 1000,              // 1 minute in milliseconds
+      seconds: 1000                    // 1 second in milliseconds
+    };
+    
+    const cycleTime = cycleTimes[unit];
+    const progress = (totalMs % cycleTime) / cycleTime;
+    return progress;
+  };
+  
+  const progress = getProgress();
+  // Transform from -100% (fully left/hidden) to 0% (fully right/visible)
+  const translateX = `${(1 - progress) * -100}%`;
   
   return (
     <div className="flex flex-col items-center relative group">
@@ -74,7 +103,10 @@ const TimeBlock: React.FC<{ value: number; label: string; isLast?: boolean }> = 
       <div className="mt-2 flex items-center gap-2 w-full">
          <span className="text-[10px] md:text-xs font-bold text-gray-500 tracking-[0.2em]">{label}</span>
          {!isLast && <div className="hidden md:block flex-1 h-[1px] bg-gray-800 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[#FFE600] -translate-x-full animate-[slideInLeft_2s_infinite]"></div>
+            <div 
+              className="absolute inset-0 bg-[#FFE600] transition-transform duration-100 ease-linear" 
+              style={{ transform: `translateX(${translateX})` }}
+            ></div>
          </div>}
       </div>
     </div>

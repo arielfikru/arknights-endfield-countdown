@@ -44,3 +44,7 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+DESIGN_TOKENS.md
+UI_UX_DOCUMENTATION.md
+README.md
