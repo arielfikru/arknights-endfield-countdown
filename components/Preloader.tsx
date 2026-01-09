@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 interface PreloaderProps {
     onComplete: () => void;
+    accentColor: string;
+    loadingLabel: string;
 }
 
-export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
+export const Preloader: React.FC<PreloaderProps> = ({ onComplete, accentColor, loadingLabel }) => {
     const [progress, setProgress] = useState(0);
     const [isExiting, setIsExiting] = useState(false); // Trigger yellow wipe in
     const [isRevealing, setIsRevealing] = useState(false); // Trigger yellow wipe out
@@ -58,8 +60,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                             <span className="animate-pulse">ENDFIELD</span>
                         </div>
                         {/* Subtitle */}
-                        <div className="text-[#FFE600] font-mono-tech text-xs md:text-sm tracking-[0.3em] mt-2 text-center animate-pulse">
-              // INITIALIZING_SYSTEM
+                        <div className="font-mono-tech text-xs md:text-sm tracking-[0.3em] mt-2 text-center animate-pulse" style={{ color: accentColor }}>
+                            {loadingLabel}
                         </div>
                     </div>
                 </div>
@@ -68,7 +70,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 <div className={`absolute top-8 right-8 md:right-12 transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
                     <div className="flex flex-col items-end gap-1 text-gray-600 font-mono-tech text-[10px] uppercase tracking-widest">
                         <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-[#FFE600] animate-pulse"></span>
+                            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: accentColor }}></span>
                             <span>SYS_BOOT</span>
                         </div>
                         <div className="text-gray-700">VER.2026.01.05</div>
@@ -80,7 +82,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                     <div className="flex flex-col gap-1 text-gray-600 font-mono-tech text-[10px] uppercase tracking-widest">
                         <div>TALOS-II_PROTOCOL</div>
                         <div className="flex items-center gap-2">
-                            <div className="w-12 h-[2px] bg-[#FFE600] animate-pulse"></div>
+                            <div className="w-12 h-[2px] animate-pulse" style={{ backgroundColor: accentColor }}></div>
                             <span>ACTIVE</span>
                         </div>
                     </div>
@@ -88,19 +90,20 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
                 {/* Progress Info - Bottom Left */}
                 <div className={`absolute bottom-24 left-6 md:left-12 transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
-                    <div className="flex items-end gap-3 text-[#FFE600] leading-none">
+                    <div className="flex items-end gap-3 leading-none" style={{ color: accentColor }}>
                         <span className="text-6xl md:text-8xl font-bold tracking-tighter font-mono-tech tabular-nums">
                             {Math.floor(progress).toString().padStart(2, '0')}%
                         </span>
                         <div className="flex flex-col gap-1 mb-2">
                             <span className="text-[10px] md:text-xs font-mono-tech text-gray-500 uppercase tracking-widest animate-pulse">
-                // LOADING_ASSETS...
+                                // LOADING_ASSETS...
                             </span>
                             <div className="flex gap-1">
                                 {[...Array(5)].map((_, i) => (
                                     <div
                                         key={i}
-                                        className={`w-1.5 h-1.5 ${progress > i * 20 ? 'bg-[#FFE600]' : 'bg-gray-700'} transition-colors duration-200`}
+                                        className={`w-1.5 h-1.5 transition-colors duration-200`}
+                                        style={{ backgroundColor: progress > i * 20 ? accentColor : '#374151' }}
                                     ></div>
                                 ))}
                             </div>
@@ -111,10 +114,11 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 {/* Progress Bar Line */}
                 <div className={`absolute bottom-20 left-0 w-full h-[2px] bg-gray-800/50 overflow-hidden transition-opacity duration-300 ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
                     <div
-                        className="h-full bg-[#FFE600] transition-all duration-100 ease-out"
+                        className="h-full transition-all duration-100 ease-out"
                         style={{
                             width: `${progress}%`,
-                            boxShadow: '0 0 10px #FFE600, 0 0 20px #FFE600, 0 0 30px #FFE600'
+                            backgroundColor: accentColor,
+                            boxShadow: `0 0 10px ${accentColor}, 0 0 20px ${accentColor}, 0 0 30px ${accentColor}`
                         }}
                     ></div>
                 </div>
@@ -139,8 +143,9 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
             {/* 2. Yellow Wipe Curtain */}
             {/* Starts at -100% (Left). Moves to 0% (Center). Then to 100% (Right). */}
             <div
-                className="absolute inset-0 bg-[#FFE600] z-50 transform transition-transform duration-[800ms]"
+                className="absolute inset-0 z-50 transform transition-transform duration-[800ms]"
                 style={{
+                    backgroundColor: accentColor,
                     transform: isRevealing
                         ? 'translateX(100%)' // Move to Right (Reveal)
                         : isExiting
@@ -158,7 +163,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
                 {/* Corner details */}
                 <div className="absolute bottom-10 right-10 text-black/30 font-mono-tech text-xs uppercase tracking-widest">
-          // TRANSITION_COMPLETE
+                  // TRANSITION_COMPLETE
                 </div>
 
                 {/* Geometric decorations */}
